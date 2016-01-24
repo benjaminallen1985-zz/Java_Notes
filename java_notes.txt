@@ -1,0 +1,489 @@
+Time to start doing that reflection thing. Take notes, ask questions to myself about what I've 
+read and learned, and type them out.
+
+*Starting at lesson 4 in Helsinki's Java course. The other lessons are pretty basic, and I need 
+to focus on stuff I haven't covered yet.*
+
+-camelCase, obviously.
+-no special characters in variable names.
+
+Lesson 6. Concatenation of strings
+string variable_name = something + something_else + more;
+system.out.println(variable_name);
+something something_else more
+
+Lesson 7. Reading User Input
+- import java.util.Scanner;
+- Scanner reader = new Scanner(System.in);
+- System.out.print("The output you want the user to see.");
+- String variable_name = reader.nextLine(); // The input from the user at the keyboard.
+- Scanner utility does not work for integers. Use the utility below
+- int variable_name = Integer.parseInt(reader.nextLine());
+
+Lesson 8. if loops/conditional statements.
+-glancing over this section. Already have a good grasp on it.
+-Maintain emphasis on correct code indentation.
+-else/if for multiple conditions
+-to compare literal strings, use text.equals("enter text for string here")
+-text.equals could be used for searching through arrays?
+
+8.5: Logical operations. (I need to emphasize studying boolean operators and logic)
+- && for and
+- || for or
+
+Lesson 9. Introduction to Loops.
+-if/else
+-for/in
+- *need to find syntax for the (StingorInt : Variable) or whatever loop.
+
+Lesson 10. Changing Variables
+
+Lesson 11. More Loops
+-while(condition)
+
+11.1
+- use += or -= to save on keystrokes
+
+Lesson 12. Methods.
+-a piece of pre-written code
+-method parameter goes inside brackets - ()
+
+Lesson 13. Self-Written Methods.
+-User-defined method which can be called in the main part of the code.
+-saves time and keystrokes if it's a commonly used piece of code.
+-Can be saved in a file and used with other projects.
+
+13.1 
+Method parameters.
+-public static void greet(String name) {
+	blah blah
+};
+-the method can be given parameters
+-the String name is the parameter for greet in this example.
+-in this example, greet is called by typing
+greet(*name_of_string_for_parameter*);
+
+13.2
+-multiple parameters can be input. i.e., greet(name1 + " " + name2 + " " + name3);
+
+13.3
+Method calling another method.
+-Methods can call each other.
+
+14. More about methods.
+
+14.1
+Methods and visibility of variables.
+-variables defined in main are not visible for other methods.
+-variable defined in methods are not visible for other methods.
+-The only way to give information to a method from the outside is to use parameters.
+
+14.2
+Return values
+-A method can return a value.
+-You have to define the type of the return value.
+-public static/void/whatever int/string/whatever method_name() {
+	return method_value;
+}
+
+14.3
+The Method's own variables
+-the method's variables can be introduced just like any other variable.
+
+15.
+Strings of characters
+-.equals() *compares string to text in parameter
+-.length() *gives length
+-.charAt() *returns character in string at position in parameter
+
+15.1
+Other Methods for strings
+-.substring() *returns the part of the string which starts at the indicated position in the 
+parameter, along with everything after that position.
+-.indexOf() *returns a specific word or string in a text. If the word is not found, returns -1.
+
+16.
+Object
+-Strings are "clever." They "know" things about themselves
+-Integers don't
+-A String is an Object, or "something that has methods and a value."
+-In the Java language, objects must be "born", or created with the "new" command. Strings are 
+objects that make an exception to this rule. "new" doesn't have to be used with String.
+
+17.
+Arraylist, or an "Object Container"
+-Probably the most used object container in Java.
+-syntax is as follows:
+ArrayList<variable_type, either string/int/whatever> variable_name = new ArrayList<variable_type>();
+-import java.util.ArrayList;
+
+17.1
+Methods of ArrayLists
+-.get(i) returns the value from the index i in the list.
+-.remove will remove strings from the list
+-.remove("enter_characters_to_remove") will remove the string from the list
+-.remove(i) will remove the string at the index
+-.contains("enter_characters_to_search_for") will search for a particular string of 
+characters, and return true if the list contains it.
+
+17.2
+Going through an ArrayList
+-.add("enter_characters") will add the string to the arraylist in the next index position
+-while loops can be used to add items to arraylists
+
+17.3
+For-each
+-syntax is as follows, and reiterates the syntax ***starred***'ed up above to search for:
+for (variable_type variable : primary_variable_to_search_through)
+for each variable type of variable in primary_variable, execute code
+-indexes can be "ignored" by going through content "automatically"; efficient for large data
+
+17.4
+Ordering, reversing and Shuffling a list
+-items in an ArrayList are easy to order alphabetically. String.sort will sort them this way
+-String.shuffle will shuffle items in the list
+-String.reverse will reverse the order
+
+17.5
+Arraylist as a parameter for a method
+-an ArrayList can be given to a method as a parameter.
+syntax:
+public static/whatever void/whatever method_name(ArrayList<String> array_name)
+-the name of the parameter can be anything
+
+17.6
+Numbers in an ArrayList
+-ArrayLists can be used to store any type of values
+-For Integers, use this syntax:
+ArrayList<Integer>
+-Must use Integer instead of Int.
+-the Remove method does not work like expected with Int ArrayLists
+i.e., dont use array_name.remove(integer) to remove integer. Use index position.
+-to remove integers, use following syntax:
+numbers.remove( Integer.valueOf(integer_you_want_to_remove));
+-ArrayLists can also store doubles and char variables
+-for doubles, use following syntax:
+ArrayList<Double> doubles_or_other_variable_name = new ArrayList<Double>();
+-for char, use following syntax:
+ArrayList<Character> characters_or_other_name = new ArrayList<Character>();
+
+17.7
+ArrayList as Return Value of a Method
+-ArrayList can also be returned from a method as a return value.
+-use the syntax: return ArrayList_variable_name;
+
+18.
+Using Truth Values (Booleans)
+-Only two values: true or false
+-You can declare variable with a boolean value, and use the variable name for conditional 
+values. i.e., instead of a full if(this_condition <= this_other) {
+	boolean_value = true_or_false;
+}, the user could instead just use if(variable_name) for the appropriate boolean value. For 
+the opposite value, add the ! operator, i.e., if(!variable_name).
+-instead of if/else statements to return true/false for some statements, use syntax:
+return variable_name.method_name(parameter_name)
+
+18.1
+Methods That Return a Truth Value
+-Truth values especially handy for methods that check validity.
+-Usually it is not necessary to store the answer into a variable. Method call can be a 
+condition.
+
+18.2
+The Return Command and Ending a Method
+-The execution of a method is stopped immediately when *return* is executed.
+-It is possible to set up a method with a conditional statement based on one of the possible 
+boolean values returning, and not using any code besides *return* and the opposite boolean 
+value if the condion is not met.
+
+19.
+Methods of Copying Parameters
+-methods cannot directly access main program variables, because they are not visible to methods
+-no method variable is visible to other methods.
+-The only way to give information to a method is through a parameter.
+-memory conflicts could be an issue when passing parameters through multiple methods, or more 
+specifically, variable values stored in the memory could be altered unintentionally if the 
+programmer is not careful.
+-variable values get copied over, only copies are altered. Originals are not.
+-List values are not copied, so the method will make changes to the original list given as
+ a parameter.
+ -Many things in Java are "connected with a wire", or are connected in processes. i.e., the name 
+ of an ArrayList is the wire connecting the actual list to the name of the ArrayList.
+ -The reason the values in the ArrayList are not copied over, but have the original copies
+ altered is that only Primitive Data Types (Int, Double, Char, Boolean, and a couple others) 
+ get copied to the method. When the method parameters of other types are used, only the 
+ references get copied over.
+ -The reference is the "wire"
+
+ 20.
+ Instructions on Code-Writing and Problem Solving.
+ -Two leading software developers, Martin Fowler and Kent Beck said in the book "Refactoring: 
+ Improving the Design of Existing Code" that:
+ Fowler: "Any fool can write code that a computer can understand. Good programmers write code 
+ that humans can understand."
+ Beck: "I'm not a great programmer. I'm just a good programmer with great habits."
+ -*I need to pay attention to and thoroughly study these lessons. From the advice I've read on 
+ forums, and from the videos from professional programmers, the habits in how to write good code 
+ are just as, if not more, important than a degree in computer science when it comes to 
+ employability. Get in the habit of writing good, well organized code which others can 
+ understand.*
+
+ 20.1
+ Well Indented and "Breathing" Code
+ -Line breaks between logical parts.
+ -Make code "Airy," or easy to read with space between code
+ -**Comment, comment, comment. Add notes to clarify what things are for, or how they are 
+ related to each other, or whatever is needed to make things easy to understand.**
+
+ 20.2
+ Getting rid of Copy-Paste by using Methods instead
+ -The "Original Sin" of a programmer is to create copy-paste code, or using the same code in 
+ multiple places by copy-pasting around the source code. If it's going to be used multiple 
+ times, create a method instead.
+
+ 20.3
+ Slicing Separate Tasks Into Methods With Descriptive Names
+ -Name Methods with descriptive names. Try to make the purpose of the method obvious just by 
+ the name.
+
+ 21.
+ Object-Oriented Programming
+ -Procedural programming is dividing a program into smaller parts, or methods. In OOP, the small 
+ parts are objects. Each part has its own individual responsibility. An object contains a 
+ related group of information and functionality. OOP consists of multiple objects which together 
+ define how the program works.
+
+ 21.1
+ Object
+ -Objects are like methods, they have variables which other objects can't see
+
+ 21.2
+ Class
+ -Objects are *instances of classes
+ -Classes have universal methods for (usually?) all objects using that class.
+
+ 21.3
+ A Class and its Objects
+ -A class defines what kind of objects is has:
+ What methods the objects have
+ What the state of the objects are, or what kind of attributes the objects have.
+ -Could be called a "blueprint"
+ -Dictates the underlying behavior the objects can have
+ -An object is always created from its class by calling the method, or constructor, that creates 
+ the object with the command *new*.
+
+ 21.4
+ Defining Your own Class - Object Variables
+ -To create new class in NetBeans, right click on the name of the project in the left side 
+ "Projects" menu and click create class.
+ -make the names of created classes as descriptive as possible.
+
+ 21.5
+ Defining Your Own Class - Constructor, or "Formatting the State"
+ -When an object is created, its starting state is defined at the same time.
+ -use following syntax to declare the definitions for your created class:
+
+ public class whatever_the_name_is {
+ 	private String/Int/Whatever name_or_whatever;
+ 	private int/String/Whatever another_name_or_whatever;
+ 	//for as many definitions as the class needs//
+
+ 	public whatever_the_name_is(String initialName_or_whatever) {
+ 		this.whatever = value_here;
+ 		this.also_whatever = another_value_here;
+ 		//for as many as needed. Declaring the definitions from above.
+ 	}
+ }
+
+ -The constructor always has the same name as the class. whatever_the_name_is for above example
+ -within the constructor, the commands this.whatever defines internal variables of "this" object
+
+ 21.6
+ Class Definition - Methods
+ -Objects are useless if they cannot do anything.
+ -Define methods inside the objects.
+ -with objects, the keyword *static* is not used in method definitions.
+
+ 21.7
+ More Methods
+ -Objects created using a constructor will have all the attributes defined in the constructor 
+ with the "this" command.
+
+ 21.8
+ The Person Class Grows **This chapter has been building a class named "Person." It is arbitrary,
+  and doesn't effect the lesson's points.**
+  -This lesson only expands on the previous points
+  -methods that "get" information are commonly called "getters"
+
+  21.9
+  toString
+  -The method that prints an object should be made this way: define a method that returns a 
+  "character string representation" of the object. In Java, this is toString.
+  -syntax: 
+  	public String toString() {
+  		return this.variable_name + this.other_variable_name + however many you need
+  	}
+  	-when calling the method, only the name of the object has to be used. i.e., for names of 
+  	people representing the objects, use
+  	System.out.println( person_name ); instead of System.out.println( person_name.toString() );
+
+  	21.10
+  	More Methods
+  	-methods that set values to variables are called "setters"
+
+  	21.11
+  	Object Variable and Parameter With Identical Name
+  	-parameters can have the same name as the object (might be confusing in some situations 
+  	 though?) *Be sure not to assign the value of the parameter to the parameter itself. i.e., 
+  	 int height;
+  	 height = height;
+  	 *won't work.
+  	
+  	21.12
+  	Controlling the Number of Decimals When Printing a Float
+  	-one technique to control the number of decimals in a float is *String.format
+  	-Syntax: If value_or_whatever_variable_name is a float number, the command 
+  	String.value( "%.2f", value ) return a string where the value is rounded to 2 decimals. The 
+  	number between dot and f defines the amount of decimals shown.
+  	-The String.format method is not the most flexible way provided by Java for formatting float 
+  	values, but it is simple to use and suits our purposes here well.
+  	--Important notes regarding the use of objects.
+  	--Object-oriented programming is mostly about turning concepts into their own entities, or 
+  	in other words forming abstractions. One might think that it is pointless to create an
+  	 object that only holds one number in it, and that the same could be achieved with simple int
+  	 variables. This is not the case. If a clock consists of just 3 int variables that are then 
+  	 increased, the program loses some human readability. It becomes more difficult to "see" 
+  	 what the program is about. Earlier in the material we mentioned the advice of the renown 
+  	 programmer Kent Beck: "Any fool can write code that a computer can understand. Good 
+  	 programmers write code that humans can understand." Since the hand of a clock is its own
+  	  clearly definable concept, it is a good idea to create a class for it - for the sake of 
+  	  human readability. *Make a method for each concept, if it's possible, rational, and helps 
+  	  with readability.* 
+
+  	  -Thread.Sleep(Integer_of_how_long_you_want_the_program_to_pause_between_executions)
+
+  	  21.13
+  	  Callint Other Methods Within an Object
+  	  -Objects can also call their own methods. 
+
+  	  22
+  	  Randomness
+  	  -Java has a pre-made class named *Random*
+  	  -syntax:
+  	  import java.util.Random;
+  	  public class Randomizing {
+  	  	public static void main(String[] args) {
+  	  		Random randomizer = new Random(); //creates a random number generator
+  	  		int i = 0;
+
+  	  		while (i < 10_or_whatever_count) {
+  	  			//Generates and prints out a new random number on each round of the loop
+  	  			System.out.println(randomizer.nextInt(10));
+  	  			i++;  	  		
+  	  		}
+  	  	}
+  	  }
+-replace .nextInt() with .nextDouble() if floating points are needed
+-the Random method .nextGaussian will return a value from the normal distribution
+
+23.1
+Multiple Constructors
+-To be able to not be required to enter all parameters, multiple constructors can be used. i.e.,
+public Person(String name) {
+	this.name = name;
+	this.age = 0;
+}
+
+public Person(String name, int age) {
+	this.name = name;
+	this.age = age;
+}
+
+Person person_name = new Person("Person_name", 24);
+Person someone_else = new Person("Someone_else");
+**Someone_else does not have a known age, but the first Constructor requires two parameters.
+
+23.2
+Calling your own constructor
+-Do not "copy-paste" code when setting this crap up!
+-An old constructor can "call" a new constructor. syntax:
+public Person(String name) {
+	this(name, 0); // this will run the other constructor's code and set the age parameter to 0
+}
+
+public Person(String name, int age) {
+	this.name = name;
+	this.age = age;
+}
+
+23.3
+Overloading a Method
+-Just like constructors, methods can also be overloaded and multiple versions of a method can exist.
+-The parameter types of different versions have to be different. i.e.,
+public void becomeOlder() {
+	this.age = this.age + 1;	
+}
+
+public void becomeOlder(int years) {
+	this.age = this.age + years;
+}
+
+-In the example above, someone could age with a preset increment of 1, or with the second 
+constructor a person could have any Int added to their age.
+this.becomeOlder(); //increase by one
+this.becomeOlder(10); //increase by ten
+
+23.4
+Object is at the end of a Wire
+-Objects are "at the end of a wire"
+-attached to the name of the variable
+public static void main(String[] args) {
+	Person pekka = new Person("Pekka", 24);
+
+	System.out.println( pekka );
+
+	Person person = pekka;
+	person.becomeOlder(25);
+
+	System.out.println( pekka );
+}
+
+Prints the following:
+Pekka, age 24 years
+Pekka, age 49 years
+
+-two versions of Pekka are created
+-The command *Person person = pekka;* makes person refer to the same object that pekka refers 
+to. A copy of the object is not born, but instead both of the variables refer to the same object.
+With the command *Person person = pekka;*, a copy of the *Wire* is born.
+public static void main(String[] args) {
+	Person pekka = new Person("Pekka", 24);
+
+	System.out.println( pekka );
+
+	Person person = pekka;
+	person.becomeOlder(25);
+
+	System.out.println( pekka );
+
+	pekka = new Person("Pekka Mikkola", 24);
+	System.out.println( pekka );	
+}
+Prints:
+Pekka, age 24 years
+Pekka, age 49 years
+Pekka Mikkola, age 24 years
+-A new object is born with the Pekka Mikkola line instead of the Wire being copied
+-It is possible to set a method to "nothing" or *null*
+-If you try to call a "nothing's" method, an Exception is thrown - NullPointerException
+-The NullPointerException happens when you try to call methods of an object with the value null.
+
+23.5
+An Object as a Method Parameter
+-a method can take an object as a parameter
+-NetBeans has a feature that will automatically generate constructors, getters, and setters. Go 
+inside of the code block of the class, but outside of all methods and simultaneously press 
+Ctrl+Space. If your class, for example, has an object variable balance, NetBeans will offer you 
+the opportunity to generate the getter and setter methods, and a constructor that sets a starting
+ value for the object variable.
+ 
