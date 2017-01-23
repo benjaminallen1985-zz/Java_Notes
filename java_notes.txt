@@ -1,6 +1,3 @@
-Time to start doing that reflection thing. Take notes, ask questions to myself about what I've 
-read and learned, and type them out.
-
 *Starting at lesson 4 in Helsinki's Java course. The other lessons are pretty basic, and I need 
 to focus on stuff I haven't covered yet.*
 
@@ -134,7 +131,7 @@ Going through an ArrayList
 17.3
 For-each
 -syntax is as follows, and reiterates the syntax ***starred***'ed up above to search for:
-for (variable_type variable : primary_variable_to_search_through)
+for (variable_type variable : array_to_search_through)
 for each variable type of variable in primary_variable, execute code
 -indexes can be "ignored" by going through content "automatically"; efficient for large data
 
@@ -264,7 +261,7 @@ programmer is not careful.
 
  21.3
  A Class and its Objects
- -A class defines what kind of objects is has:
+ -A class defines what kind of objects it has:
  What methods the objects have
  What the state of the objects are, or what kind of attributes the objects have.
  -Could be called a "blueprint"
@@ -314,6 +311,7 @@ programmer is not careful.
   and doesn't effect the lesson's points.**
   -This lesson only expands on the previous points
   -methods that "get" information are commonly called "getters"
+  -methods that "set" information are commonly called "setters"
 
   21.9
   toString
@@ -487,3 +485,611 @@ Ctrl+Space. If your class, for example, has an object variable balance, NetBeans
 the opportunity to generate the getter and setter methods, and a constructor that sets a starting
  value for the object variable.
  
+23.6
+Another Object of the Same Type as a Parameter to a Method
+-can use *this.parameter* and *object_name.parameter* to compare parameters within references to 
+objects. i.e., 
+public class Person {
+	public boolean olderThat(Person compared) {
+	if (this.age > compared.age) {
+	return true;
+	}
+	return false;
+	}
+}
+
+-Even though age is a private variable in the above example, we can read the value of the 
+variable by writing compared.age. This is because private variables can be read in all methods 
+that the class in question contains.
+
+23.8
+Objects on a List
+-*this lesson is a reiteration on ArrayLists. Not much to note on*
+
+23.9
+An Object Within an Object
+-Objecs can have objects within them, not only character strings but also self-defined objects. 
+i.e.,
+public class Person {
+	private String name;
+	private int age;
+	private int weight;
+	private int height;
+	private MyDate birthMyDate; //MyDate is the object
+}
+Constructor for the previous would be:
+public Person(String name, int day, int month, int year) {
+	this.name = name;
+	this.weight = 0;
+	this.height = 0;
+	this.birthMyDate = new MyDate(day, month, year);
+}
+-Because the parts of the date are given as constructor parameters (day, month, year), the date 
+object is created out of them and then inserted to the object variable *birthMyDate*
+
+23.10
+A List of Objects Within an Object
+-an ArrayList can be used to store a list of related Objects
+
+23.11
+Method Returns an Object
+-can use *return null;* for empty list
+-Lesson outlines using a dummy variable when searching through a list to find the largest 
+variable stored in the list. Each item in the list is compared to the dummy variable, and the 
+variable is replaced with the item in the list if the item is larger.
+
+23.12
+Method Returns an Object it Creates
+-Lesson outlines the process to create a clone of a counter object. syntax:
+Counter clone = new Counter(this.value); //the names of the variables are arbitrary, but the 
+important point to note is the (this.value) which hands the new Counter the pre-existing 
+parameter value. The name *value* is also arbitrary, and in real usage will be replaced with the 
+name of the variable you wish to pass to the newly created clone.
+
+-double should not be used as a variable for money, because the arithmetic is not accurate.
+-implement a class that represents money instead.
+
+24.1
+Character Strings are Immutable
+-The String objects of Java are immutable, or unchangeable, i.e., if a new object is 
+concatenated to the end of a character string with the + operator, the original character 
+string doesn't become longer, but a new character string object is born.
+
+25
+Array
+-ArrayList offers a lot of ready-made tools, i.e., automatic growing of a list
+-Array is an object that can be understood as a series of pigeonholes for values. The values of an 
+Array are called "cells" of the array.
+-Unlike ArrayLists, Arrays cannot change size. Growing an Array requires creating a new array and 
+copying the cells of the old array to the new one
+-There are two ways to create Arrays
+-First syntax:
+int[] array_name = {array_values};  (This creates an array of integers. Can be other variable types)
+-Arrays in Java are zero-index
+
+25.1
+Iteration of an Array
+-array.length for size
+-while loops to iterate through arrays
+-for-each loops can be used
+-When using a for-each loop, you cannot set values to the cells of the array.
+
+25.2
+Another Form of the For Command
+-For loops generally considered a clearer method of defining conditions of loops
+
+25.3
+For and Array Length
+-another reiteration of iteration through arrays with for loops. i < array.length
+
+25.4
+Array as a Parameter
+-Arrays can be use as parameters to methods.
+
+25.5
+Creating a New Array
+-When the size of an array isn't always going to be the same (the size depends on user input), the first method of 
+creating arrays will not work. It is possible to create a table so that its size is defined with the help of a 
+variable. syntax:
+
+int cells = 99;
+int[] array = new int[cells];
+-can set user input as the value amount with which to assign to array
+Integer.parseInt(reader.nextLine());
+
+25.6
+An Array as the Return Value
+-methods can return arrays
+
+26
+About Blocks and Nested Loops
+-A piece of code that begins and ends with curly brackets is called a block.
+-Variables defined within a block only exist within it.
+-You can use and manipulate variable defined outside of a block with code inside the block
+
+26.1
+Variables Defined Outside of a For Loop as its Condition
+-more about nested loops
+
+27
+To Static or not to Static
+-a Static method does not operate on any object, instead it is a class method.
+-static methods are not connected to any particular object and thus the reference "this" is not valid within static methods
+-a static method can operate only with data that is given to it as a parameter (can give objects as parameters also)
+-static methods cannot be called with the syntax objectName.methodName. They must be called with methodName only.
+-If a static method is called from a different class, the call's syntax is:
+ClassName.staticMethodName()
+
+27.1
+When Static Methods Should be Used
+-All object-state handling methods should be defined as normal object methods.
+-a static method doesn't belong to any object ("this" reference not working...), but can receive an object as a parameter.
+
+29.1
+Sorting an Array with the Ready-Made Tools of Java
+-Sorting a table can be done with Arrays.sort(array)
+-import java.util.Arrays;
+-declare array with syntax:
+variable_type [] array_name = {values, of, array};
+-iterate through array with syntax:
+for(variable_type temp_name : array_name) {
+	do this
+}
+
+30
+Searching
+-iterating through large arrays can be time-consuming.
+-one possible search pattern is to sort an array from smallest value to largest value, find the value of the middle index 
+(the median), determine if the value being searched for is smaller or larger than the value at the median index, and eliminate 
+the half of the array which the value is not in from the search, then repeat the process until the value is found. This 
+eliminates the need to iterate through the entire array, which can be much more efficient when dealing with very large arrays.
+-The above process is referred to as the "binary search" in the lesson material.
+-the efficiency of binary search can be inspected with logarithms. A base two logarithm (log2 4294967296) is 32. This means 
+that searching from a sorted array of 4294967296 different values would only take up to 32 cell inspections. Efficiency is an 
+essential part of computer science.
+
+*** REMEMBER TO MERGE NOTES FROM LAPTOP AT SOME POINT!!!***
+
+33.5
+Class
+-A class is defined with "public class name_Of_Class"
+-Every Java program requires a class in order to work.
+-In a program, classes are used to define concepts and functionalities related to those concepts.
+-Objects are created from a class with a constructor.
+-A constructor is a method that initializes an object(creates the variable belonging to the object) and executes the commands that are within the constructor. The constructor is always named the same as the class that has the constructor in it.
+
+33.6
+Object
+-Objects are created with the help of the constructor that is defined within a class.
+-the constructor is called with the "new" command, which returns a reference to the new object.
+-Objects are instances created from classes.
+-Each object has its own internal state. The state is formed from object variables that belong to the object.
+-Object variables can be both primitive type variables and reference type variables.
+-If reference type variable belong to the objects, it is possible that other objects also refer to the same referenced objects
+- In the example provided, a program lists classes for a "person," an "account," and a main that makes two new "persons" and two
+ new "accounts" and adds one acount to the first person, and the second account to both the persons, so the account is a shared account.
+
+ 33.7
+ The Structure of a Program
+ -A program should be clear and easy to understand for both the original writer and others.
+ -The most important aspects of a clear program are class structure and good naming conventions.
+ -Each class should have a single, clearly defined responsibility.
+ -Methods are used to reduce repetition and to create a structure for the internal functionality of the class.
+ -A method should have a clear responsibility to ensure it stays short and simple.
+ -Methods that do many things should be divided into smaller helper methods, which are called by the original method.
+ -A good programmer writes cod that can be understood even weeks after it was originally written.
+ -Dividing a program into smaller parts is called refactoring (Maybe where that programming boot camp got its name?)
+ -Refactoring does not change how the program works, but the internal structure is changed to be more clear and easier to 
+ maintain.
+
+ 33.8
+ Programming and the Importance of Practicing
+ -**The lesson specifically states, "As far as we know, nobody has yet learned programming by listening to lectures."
+ -To develop the skill required in programming, it is essential to practice both what you have learned earlier and things 
+ that are new to you.
+ -Programming can be compared to speaking languages or playing an instrument, both of which can only be learned by doing.
+ -Master Violinists are not good at playing only because they practice a lot. Playing an instrument is fun, which makes 
+ one more motivated to practice. The same applies to programming.
+ -As Linus Torvalds said, "Most good programmers do programming not because they expect to get paid or get adulation by 
+ the public, but because it is fun to program."
+ -List of instructions from Dr. Luukkainen for new programmers to follow when learning to program:
+ 		Take Small Steps
+ 1. Divide the problem you are trying to solve into smaller parts and solve them *One at a time
+ 2. Keep testing that your solution is moving in the right direction, ensuring that you have solved the current part correctly
+ 		Keep the Code as Clean as you can
+ 1. Use Proper Indentation
+ 2. use descriptive names for variables, methods, classes, everything
+ 3. keep all methods short, including main
+ 4. write methods that only do one thing.
+ 5. *Remove all copy-paste code by refactoring (or don't copy and paste in the first place!)
+ 6. replace "bad" and unclear code with clean, easy to read code.
+
+ 33.9
+ Visibility
+ -public vs private
+ -Methods and constructors are usually marked as public, so that they can be called from outside the same class.
+ -Declaring a method or instance variable private hides it from the outside, making it only accessible from inside the same 
+ class.
+ 
+ 34
+ Primitive- and Reference-Type Variables
+ -Java is a strongly typed language, which means that all of its variable have a type.
+ -two categories of variables in Java: primitive-type and reference-type
+ -Primitive type variable hold the concrete value in their slot
+ -reference type variables hold a reference to a concrete object
+
+ 34.1
+ Primitive-type variables
+ -The value of a primitive type variable is saved in a slot created for the variable.
+ -each one has its own slot and its own value
+ -the slot is created when the variable is introduced.
+ -the void type doesn't have its own slot or value. We use void type when we want to express that a method doesn't return a 
+ value
+ -Primitive-type variables can be visualized as boxes that both have the values belonging to them saved into them
+
+ 34.1.1
+ Primitive-type variable as a method parameter and return value
+ -When a primitive type variable is passed to a method as a parameter, the method parameter is set to the value in the given 
+ variable's slot.
+ -The method's parameters also have their own slot which the primitive-type variable's value is copied to.
+
+ 34.1.2
+ Minimum and Maximum values
+ -Each primitive data type can represent a specific range of values limited by its minimum and maximum value, which are the smallest and largest values representable by the type.
+ -A predefined data size is used for the internal representation of the type in Jave (and most other programming languages)
+ -examples: int minimum -2,147,483,648 (Java doesn't use commas, that is just for ease of reading the size),
+ int maximum 2,147,483,647
+ - Rounding errors - When using floating point data types, it is important to keep in mind that floating point types are always an approximation of the actual value. Because floating point types use a predefined data size to represent the value similarly 
+ to all other primitive data types, we may observe surprising rounding errors.
+ -In Java, "BigDecimal" can be used to store infinitely long floating point numbers
+ - a copy and pasted example of code used to compensate for rounding errors when checking for returned values:
+double a = 0.39;
+double b = 0.35;
+
+double distance = 0.04 - (a - b);
+
+if(Math.abs(distance) < 0.0001) {
+    System.out.println("Successful comparison!");
+} else {
+    System.out.println("Failed comparison!");
+}
+
+34.2
+Reference-type variables
+-These variables memorize the information which has been assigned to them "on the other end of the line"
+-Reference-type variables contain a reference to the location where the information is stored.
+-Differently from primitive-type variables, reference-type variables do not have a limited scope because their value or 
+information is stored at the referenced location.
+-Another substantial difference between primitive-type and reference-type variables is that various different reference-type 
+variables can point to the same object(and the same value)
+-using a "new" operator tells that we define storage space for the information to be assigned to the variable, the we execute 
+the code which follows the "new" operator
+-When we copy a reference-type variable, the reference to the variable duplicates as well
+- copy and pasted example of reference assignments: 
+Calculator bonusCalculator = new Calculator(5);
+Calculator axeCalculator = new Calculator(6);
+
+bonusCalculator = axeCalculator; // the reference contained by the variable axeCalculator is copied to the variable bonusCalculator
+                                 // that is to say, a reference to a Calculator-type object which received the value 6 in its constructor
+                                 // is copied to the variable
+
+axeCalculator = new Calculator(10); // a new reference is assigned to the axeCalculator variable
+                                    // which points to the object created by the command new Calculator(10)
+
+// the bonusCalculator variable still contains a reference to the Calculator object which received value 6 in its parameter
+
+-At the end of the example, no variable points to the Calculator object which received value 5 in its constructor. Java's garbage collection 
+deletes such useless objects from time to time (relevent to pros and cons of Java vs C++ in relation to low-level memory usage?)
+-cut and paste example of value increase, and the relation of the references to the values:
+Calculator bonusCalculator = new Calculator(5);
+Calculator axeCalculator = new Calculator(6);
+
+bonusCalculator = axeCalculator; // the reference contained by the variable axeCalculator is copied to the variable bonusCalculator
+                                 // that is to say, a reference to a Calculator-type object which received the value 6 in its constructor
+                                 // is copied to the variable
+
+axeCalculator.increaseValue(); // we increase by one the value of the object referenced by axeCalculator
+
+System.out.println(bonusCalculator.getValue());
+System.out.println(axeCalculator.getValue());
+-In the example, both bonusCalcuator and axeCalculator will have 7 as their value, since they are both pointing to the same object value.
+
+34.2.1
+Reference-Type Variables and Method Parameters
+-When a reference-type variable is given to a method as its parameter, we create a method parameter which is the copy of the reference of 
+a variable. In other words, we copy the reference to the parameter's slot.
+-Different from what happens with original-type variables, we copy the reference and not their value. In fact, we can modify the object 
+behind the reference even from within the method.
+
+35
+Static and Non-Static
+35.1
+Static, Class Libraries and Final
+
+-The methods which receive the definition static are not related to objects, but to classes.
+-It is possible to define class-specific variables by adding the word "static" to their name.
+-Static methods are called via their class name. For instance, Class_Name.variable or Class_Name.method().
+-We call class library a class which contains common-use methods and variables. For instance, Java's "Math" class is a class library. It provides the Math.PI variable.
+-creating your own class library can be useful.
+-The keyword "final" in the variable definition sets the value as final, and it can't be assigned a new one.
+-Final-type variables are constant, and they always have to have a value. For instance, the class variable which tells the greatest integer, Integer.MAX_VALUE, is a constant class variable.
+---*** All variables which are provided with the definition "final" are written with CAPITAL_LETTERS_AND_UNDERSCORE_CHARACTERS
+-Static methods function analogously.
+-accessors are the methods which allow us to either read a variable value or to assign them a new one.
+i.e., 
+public static double someDouble() {
+	return theDoubleVariableYouWant;
+} //this is an accessor
+-Static variables are not as commonly used as others because they are inconvenient as global variables.
+
+35.2
+Non-Static
+
+-Non-static methods and variables are related to objects. 
+-The object variable, or attributes, are defined at the beginning of the class.
+-when an object is created with the new operator, we allocate storage space for all its object variables.
+-The variable values are personal of the object, which means that every object receives personal variable values.
+
+35.2.1
+Class Methods
+
+-Non-Static class methods can also be called without specifying the object which indicates the class.
+-Non-static methods can also call static methods (the class-specific methods). Static methods can not call non-static methods without a reference to the object itself which is essential to retrieve the object information.
+
+35.2.2
+A Variable Within A Method
+
+-The variables which are defined inside a method are auxiliary variable used during the method execution, and they are not to be confused with object variables.
+
+36.
+Hashmap
+
+-HashMap is one of Java's most useful data structures. The idea behind HashMap is we define an index for an object key - a unique value, for instance a social security number, a student number, or a phone number.
+-We call "hashing" the process of changing a key into an index, or simply to define an index.
+-The hashing happens thanks to a particular function which makes sure that we get always the same index with a known key.
+-Adding and retrieving items based on the keys allows for a particularly quick search process. Instead of parsing the table items one by one (in the worst case, we would have to go through all the items), and insteat of looking for a value with a binary search(in which case we would have to go through a number of items which would depend on the logarithm of the table size), we can look at only one table index and check whether a value is mapped to that index.
+-HashMap uses the Object class "hashCode()" method to find a key value. Every HashMap subclass will inherit the hashCode() method.
+-Java's HashMap class encapsulates - or hides - the way it works, and it returns pre-written methods ready to use.
+-When we create a HashMap, we need two type parameters, a type for the key variable, and a type for the stored object. (a string and a string, or something else)
+-We add information to the HashMap with the "put()"" method, which receives the references to the key and to the stored object as parameter.
+-The method "get()" returns either the reference to the key given as parameter, or a null value in the case the key was not found
+-Each key is mapped to one value, within the HashMap.
+-If we store a new value with an already existing key, the old value is lost.
+
+36.1
+Book Search through HashMap
+
+-this section builds a program with a "Book" class which uses a String, Integer, and another String object variables in the constructor. Getters and setters are outlined in the class for the variables. The example outlines how the Book name is used in the declaration for the HashMap which they create, and uses the Book's name as the key in the HashMap.
+
+36.2
+Library
+
+-This section explains how we must know the exact key name in the previous example when searching. The built-in Java String class provides tools for this. The toLowerCase() (or toUpperCase) and the trim() methods help in simplifying the search logic
+-the keySet() method will return keys based on the beginning characters of a string
+-the returned values of the keySet() can be parsed through with a for-each loop.
+- cut and paste example of the above concept:
+
+    public Book getBookUsingItsBeginningCharacters(String beginning) {
+        beginning = stringCleaner(beginning);
+
+        for (String key : this.collection.keySet()) {
+            if (key.startsWith(beginning)) {
+                return this.collection.get(key);
+            }
+        }
+
+        return null;
+    }
+
+-the values() method, which is provided by HashList, returns values in a HashList (ArrayList? Need to research differences between the two)
+---***  "DRY" principal - Don't Repeat Yourself. Important programming principle. Clean code of repeated code as soon as you notice the need.
+
+36.3
+Original-Type Variables in a HashMap
+
+-Both HashMap keys and stored objects are reference-type variables.
+-If we want to use an original-type variable as key or stored value, we can use their reference-type equivalent.
+-cut and paste examples:
+Original-type 	Reference-type equivalent
+int 			Integer
+double 			Double
+char 			Character
+
+-Java automatically encapsulates original-type values and translates them into reference-type values when needed.
+-In Java, the automatic translation of original-type variables into reference-type variables is called auto-boxing, i.e. allocation into a slot.
+-Java can translate reference-type variables into their original-type equivalent. For instance, Integer objects can be translated into int values, if needed. ** If we try to translate a null reference into a number, we receive the java.lang.reflect.InvocationTargetException error. When we make use of this automatic translation, we have to be sure that the value we want to translate is not null.
+-cut and paste code of fix example above:
+
+    public int lastTwitch(String name) {
+        if(this.twitched.containsKey(name) {
+            return this.twitched.get(name);
+        }
+
+        return 0;
+    }
+
+37
+Towards Automatic Tests
+
+-Testing a program manually is a hopeless burden. It is possible to automate inputs by setting up a String as a Scanner object parameter.
+-Giving a String to a Scanner class is a way to replace the String inputs given through the keyboard. The contents of the String variable input "simulates" the user input. \n denotes a line break. Each single part of the input variable which ends with a line break corresponds to one nextLine() input.
+
+38
+Java API
+
+-The Java programming language is made of three things.
+-The first is the program syntax and semantics: the way we define variables, the control flow, the variable and class structure, and their functionality.
+-The second is JVM, i.e. Java Virtual Machine, used for running our programs. Our programs are translated into a bytecode, which can be run on whatever computer has JVM. We haven't dealt with program translation because the program environment does it on our behalf. Sometimes, if the program environment does not work as expected, we may have to choose clean & build, which deletes the old source code and translates our program again.
+-The third is API (Application Programming Interface), that is to say the program interface or standard library.
+-API is a set of built-in classes specific of the programming language, which is provided to users for their own projects. For instance, the classes ArrayList, Arrays, Collections, and String are all part of Java's built-in classes. If you look for the ArrayList class, you find a link to Oracle's API documentation which shows the structure, constructors, and methods of the class.
+-NetBeans is able to show a class API, if needed. If you write a class name and add the relative import sentence, you can right click on the class name and choose Show Javadoc. This opens the class API description in your browser.
+
+39.
+Object
+
+-If the method, toString(), is not set up correctly before use, an error can occur
+-The @Override annotation tells to replace the method defined inside the inherited class.
+
+39.1
+Equals Method
+
+-The equals method is used to compare two objects - particularly used comparing String objects.
+-The lesson describes two objects being compared (In this case they define an object named "Book" and give it two parameters - a name and a year of publication - and then create the second book object using the first book object as its parameter - to copy the original object)
+-The lesson gives a description of how an "equals" comparison of the first two will come back as true, but then describes how declaring the second object again as a new object (even with identical parameters) will result in an "equals" comparison coming back as false.
+-In other words, by default the method makes sure that we are dealing with -one- unique object. If the reference is the same, the method return true. If not, false.
+-Even if the internal structure of both "book" objects are exactly the same, only the first comparison would return true. The method is checking the references.
+-The "equals" method finds out the class difference of the two objects, but it is not able to distinguish two similar objects from each other. In order to compare our object with the object we received as parameter, and whose reference is object-type, we have to change the type of the object reference. The reference type can be changed if and only if the object type is really such as we are converting it into.
+-Type casting happens by specifying the desired class within brackets on the right side of the assignment sentence
+-The reference type can be changed if and only if the object type is really such as we are converting it into.
+
+39.1.1
+Equals and ArrayList
+
+-Various different Java made-up methods make use of the equals method to implement their search functionality. For instance, the "contains" method of class ArrayList compares objects through the "equals" method.
+-The "equals" method is defined in the "Object" class, and it makes sure that both the parameter object and the compared object have the same reference.
+
+39.2
+Hashcode Method
+
+-The Hashcode method takes an object and returns a numeric value, i.e. a hash value. We need numeric values for instance when we use an object as HashMap keys.
+-The lesson gives an example of a HashMap created with a "book" object as the id, and a string as the second parameter, which is the book's owner (?)
+**
+-In order to use a class as HashMap key, we have to define:
+The "equals" method in a way that objects with the same content that will return true when compared, whereas different-content objects shall return false.
+The hashCode method in a way that it assigns the same value to all the objects whose content is regarded as similar.
+-If the search item is the same (the same information), but a different object, we will be returned a null reference.
+-This is due to the default implementation of the hashCode method of Object class. This creates an index based on the reference; this means that different objects with the same content receive different hashCode method outputs, and therefore it is not possible to find the right place of the object in the HashMap.
+-To be sure the HashMap works the way we want, the class which works as key must overwrite both the equals method and the hashCode method. It must be overwritten in such a way that it would assign the same (in this instance numeric) numeric value to all objects which have the same content. Some objects with different content may eventually be assigned the same hashCode; however, different content objects should be assigned the same hashCode as rarely as possible if we want our HashMap to be efficient.
+** To sum up again:
+In order to use a class as HashMap key, we have to define:
+-The "equals" method in a way that objects with the same content will return true when compared, whereas different-content objects shall return false
+-The hashCode method in a way that it assigns the same value to all the objects whose content is regarded as similar.
+** NetBeans allows for the automatic creation of the equals and hashCode methods. From the menu Souce -> Insert Code, you can choose equals() and hashCode(). After this, NetBeans asks which object variables the methods shall use.
+
+40
+Interface
+
+-Interface is an instrument we have to define the functionality our classes should have.
+-Interfaces are defined as normal Java classes, but instead of the definition "public class...." we write "public interface...."
+-The interfaces influence class behaviour by defining the method names and return values, but they do not contain method implementation. The access modifier is not specified, because it is always public.
+-A class implements an interface by adding the keyword "implements" betweeen the class and the interface name.
+-The implementations of methods defined in the interface must always have public access.
+*** An interface is a behavioural agreement. In order to implement the behaviour, the class must implement the methods defined by the interface. The programmer of a class which implements an interface has to define what the behaviour will be like. Implementing an interface means to agree that the class will offer all the actions defined by the interface, i.e., the behaviour defined by the interface. A class which implements an interface but does not implement some of the interface methods can not exist.
+-Classes which implement interfaces generate objects as well as normal classes, and they can be used as ArrayList types too.
+
+40.1
+An Interface as Variable Type
+
+-Two types of variables: primitive-type (int, double, etc.) and reference-type (all objects).
+-The type of an object can be different from its class. For instance, if a class implements the interface "Readable" (from the example program provided), its type is "Readable" too. For instance, since the class SMS implements the interface "Readable", it has two types: SMS and "Readable".
+-Because an interface can be used as type, it is possible to create a list containing interface-type objects. *The lesson gives an example of an ArrayList<Readable> object that is passed multiple new SMS/Readable objects.
+-The lesson gives an Ebook class as an example. The Ebook class implements the example interface "Readable". However, even though the type of the class Ebook is an interface, Ebook is not the type of all the classes which implement the Readable interface. It is poosible to assign an EBook object to a Readable variable, but the assignment does not work in the opposite way without a particular type change.
+-Type casting works if and only if the variable's type is really what we try to change it into.
+-Type casting is not usually a best practice; one of the only cases where that is legitimate is in connection with the equals method.
+
+40.2
+An interface as method parameter
+
+-The real use of interfaces becomes clear when we use them for the type of a method parameter. Because interfaces can be used as variable type, they can be used in method calls as parameter type.
+-The lesson gives a class named "Printer" as an example. The class is handed a "Readable" variable as an argument (parameter). The lesson goes on to explain that the advantage of the Printer class is that it can be handed any class instance as the argument, so long as it implements the "Readable" interface.
+-The lesson gives an example program which creates an ArrayList<Readable> object which is called NumberList. The NumberList is handed SMS objects (the example program is basically storing text messages inside the NumberList). A second NumberList is created, and is handed the first NumberList as an argument. This is passing by reference, so both NumberLists are connected by wire to the original reference. The second NumberList calls a method (named "Read" in the example program) which iterates through the list and removes each message as it goes. After it finishes iterating, both NumberLists contain no messages, since they were both referencing the same objects and they were removed with the second NumberList's "Read" method call.
+
+
+40.3
+An Interface As Method Return Value
+
+-As well as any other variable type, an interface can also be used as method return value.
+**Attention: It is not necessary to write an empty constructor if there are no other constructors in the class. In such cases, Java creates a default constructor, i.e., a constructor without parameter
+-The text provides an example program where a "Factory" class is created which is used to produce different objects that implement the interface "item" (the factory is making items. Nice analogy.) The program also introduces the class "Packer", which can be used to get a box of "items". The "Packer" creates and uses a "Factory" to produce its "Items".
+-Because the "Packer" doesn't know the classes which implement the Item interface, it is possible to add new classes which implement the interface without having to modify the packer. The program includes a "ChocolateBar" class which implements "Item". No constructor is used, so Java generates a default one. All that is specified is a public double, weight, to return the weight of the item.
+-Using interfaces while programming permits us to reduce the number of dependencies among our classes. In the example program, "Packer" is not dependent on the classes which implement "Item" interface, it is only dependent on the interface itself. This allows us to add classes without having to change the class "Packer", as long as they implement our interface. We can even add classes that implement the interface to the methods which make use of our packer without compromising the process. In fact, less dependencies make it easy to extend a program.
+
+40.4
+Made-Up Interfaces
+
+-Java API offers a number of made-up interfaces, i.e., List, Map, Set, and Collection
+
+40.4.1
+List
+
+-The List interface defines lists basic functionality. Because the class ArrayList implements the List interface, it can also be initialized through the List interface.
+List<String> strings = new ArrayList<String>();
+strings.add("A string object within an ArrayList object!");
+-A linked list can be used through the List interface in the same way as the objects created from ArrayList.
+List<String> strings = new LinkedList<String>();
+strings.add("A string object within a LinkedList object!");
+-Both implementations of the List interface work in the same way, in the user point of view.
+-In fact, the interface abstracts their internal functionality. ArrayList and linkedList internal construction is evidently different anyway. ArrayList saves the object into a table, and the search is quick with a specific index. Differently, LinkedList builds up a list where each item has a reference to the following item. When we search for an item in a linked list, we have to go through all the list items till we reach the index.
+-When it comes to bigger lists, we can point out more than evident performance differences. LinkedList's strength is that adding new items is always fast. Differently, behind ArrayList there is a table which grows as it fills up. Increasing the size of the table means creating a new one and copying to it the information of the old one. However, searching against an index is extremely fast with an ArrayList, whereas we have to go through all the list elements one by one before reaching the one we want, with a LinkedList.
+
+40.4.2
+Map
+
+-The Map interface defines HashMap basic functionality. Because HashMaps implement the Map interface, it is possible to initialize them through the Map interface.
+Map<String, String> translations = new HashMap<String, String>();
+translations.put("gambatte", "tsemppia");
+translations.put("hai", "kylla");
+
+-you get HashMap keys through the method keySet:
+
+Map<String, String> translations = new HashMap<String, String>();
+translations.put("gambatte", "good luck");
+translations.put("hai", "yes");
+
+for(string key : translations.keySet()) {
+	System.out.println(key + ": " + translations.get(key));
+}
+
+output:
+gambatte: good luck
+hai: yes
+
+40.4.3
+Set
+
+-The "Set" interface defines the functionality of Java's sets. Java's sets always contain 0 or 1 element of a certain type. Among the others, HashSet is one of the classes which implement the Set interface. We can parse a key set through a for-each loop, in the following way:
+Set<String> set = new HashSet<String>();
+set.add("one");
+set.add("one");
+set.add("two");
+
+for (String key : set) {
+	System.out.println(key);
+}
+
+output:
+one
+two
+
+40.4.4
+Collection
+
+-The Collection interface defines the functionality of collections. Among the others, Java's lists and sets are collections -- that is, List and Set interfaces implement the Collection interface. Collection interface provides methods to check object existence (the "contains" method) and to check the collection size("size" method). We can parse any class which implements the Collection interface with a for-each loop. Creating a HashMap, parse its keys and then its values:
+Map<String, String> translations = new HashMap<String, String>();
+translations.put("gambatte", "good luck");
+translations.put("hai", "yes");
+
+Set<String> keys = translation.keySet();
+Collection<String> keySet = keys;
+
+System.out.println("Keys:");
+for(String key: keySet) {
+	System.out.println(key);
+}
+
+System.out.println();
+System.out.println("Values:");
+Collection<String> values = translations.values();
+for(String value : values) {
+	System.out.println(value);
+}
+
+output:
+Keys:
+gambatte
+hai
+
+Values:
+yes
+good luck
+
